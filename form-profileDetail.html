@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link href="assets/images/favicon.png" rel="icon" type="image/png">
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>Space Box Sharing Photos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Space Box - Sharing Photos platform HTML Template">
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="assets/css/icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css"/>
+    <!-- CSS 
+    ================================================== -->
+    <link rel="stylesheet" href="assets/css/uikit.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+
+    <script src="assets/js/common.js"></script>
+</head>
+
+<body class="bg-gray-100">
+
+
+    <div id="wrapper" class="flex flex-col justify-between h-screen" style="height: 80vh;">
+
+        <!-- header-->
+        <div class="bg-white py-4 shadow dark:bg-gray-800">
+            <div class="max-w-6xl mx-auto">
+
+
+                <div class="flex items-center lg:justify-between justify-around">
+
+                    <a href="trending.html">
+                        <img src="assets/images/logo.png" alt="" class="w-32">
+                    </a>
+
+                    <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Content-->
+
+        <form method="post" id="createProfile">
+            <div class="grid lg:grid-cols-4 mt-12 gap-8" id="profile">
+                <div>
+                </div>
+                <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
+                    <br>
+                    <center>
+                        <div uk-form-custom
+                            class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transition m-0.5 mr-2  w-24 h-24 ">
+                            <input type="file" id="cropzee-input" accept=".png,.jpg,.mp4"
+                                onchange="onFileSelected(event)" required name="file">
+                            <img src="assets/images/avatars/Default.svg"
+                                class="image-previewer bg-gray-200 border-4 border-white rounded-full w-full h-full"
+                                id="profileImgtag" onclick="getFile()" data-cropzee="cropzee-input">
+                        </div>
+                    </center>
+                    <center>
+                        <label for="">Select Profile Picture</label>
+                    </center>
+                    <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                        <div>
+                            <label for=""> First name</label>
+                            <input type="text" id="first_name" placeholder="Your name.." class="shadow-none bg-gray-100 hover-to-get-info" disabled>
+                        </div>
+                        <div>
+                            <label for=""> Last name</label>
+                            <input type="text" id="last_name" placeholder="Your name.." class="shadow-none bg-gray-100 hover-to-get-info" disabled>
+                        </div>
+                        <div class="col-span-2">
+                            <label for=""> Email</label>
+                            <input type="text" id="email" placeholder="Your name.." class="shadow-none bg-gray-100 hover-to-get-info" disabled>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="about">About me</label>
+                            <textarea id="about" name="bio" rows="3" class="shadow-none bg-gray-100"></textarea>
+                        </div>
+                        <div class="col-span-2">
+                            <label for=""> Location </label>
+                            <select id="location" name="location" class="shadow-none bg-gray-100">
+                                <option value="None">None</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Surat">Surat</option>
+                                <option value="Thane">Thane</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for=""> Date of Brth</label>
+                            <input type="date" name="dob" data-uk-datepicker="{format:'DD.MM.YYYY'}" placeholder=""
+                                class="shadow-none bg-gray-100">
+                        </div>
+                        <div>
+                            <label for=""> Gender </label>
+                            <select id="gender" name="gender" class="shadow-none bg-gray-100">
+                                <option value="0">None</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                                <option value="3">Transgender</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
+                        <button type="submit" class="button bg-blue-700" id="submitProfile"> Save </button>
+                    </div>
+
+                </div>
+                <div></div>
+            </div>
+        </form>
+
+        <!-- Footer -->
+
+        <div class="lg:mb-5 py-3 uk-link-reset">
+            <div
+                class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
+                <div class="flex space-x-2 text-gray-700 uppercase">
+                </div>
+                <p class="capitalize"></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementsByTagName('body')[0].onload = async(e) => {
+            e.preventDefault();
+            // verify();
+            let currentUserResponse = await fetch('http://127.0.0.1:8000/getCurrentUser', {
+                headers: myHeaders,
+                method: 'Get',
+            });
+            let result = await currentUserResponse.json();
+            document.getElementById('first_name').value = result.first_name;
+            document.getElementById('last_name').value = result.last_name;
+            document.getElementById('email').value = result.email;
+        }
+        
+
+        submitProfile.onclick = async (e) => {
+            e.preventDefault();
+            let response = await fetch('http://127.0.0.1:8000/create_profile', {
+                headers: myHeaders,
+                method: 'Post',
+                body: new FormData(createProfile),
+            });
+            let result = await response.json();
+            alert("Profile Created Successfully");
+            window.location.href = "feed.html"
+        }
+    </script>
+
+    <!-- Scripts
+    ================================================== -->
+    <script src="assets/js/tippy.all.min.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/uikit.js"></script>
+    <script src="assets/js/simplebar.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/cropzee.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
+
+
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#cropzee-input").cropzee({ startSize: [85, 85, '%'], });
+            history.pushState(null, document.title, location.href);
+            window.addEventListener('popstate', function (event) {
+                history.pushState(null, document.title, location.href);
+            });
+        });
+        function onFileSelected(event) {
+            var selectedFile = event.target.files[0];
+            var reader = new FileReader();
+    
+            var imgtag = document.getElementById("profileImgtag");
+            imgtag.title = selectedFile.name;
+    
+            reader.onload = function (event) {
+                imgtag.src = event.target.result;
+            };
+    
+            reader.readAsDataURL(selectedFile);
+        }
+        $('#about').emojioneArea({
+            pickerPosition: 'bottom'
+        });
+    
+        $('.hover-to-get-info')
+    </script>
+</body>
+</html>
