@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/tailwind.css">
 
-    <script src="assets/js/common.js"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -62,11 +61,11 @@
                     <center>
                         <div uk-form-custom
                             class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transition m-0.5 mr-2  w-24 h-24 ">
-                            <input type="file" id="cropzee-input" accept=".png,.jpg,.mp4"
+                            <input type="file" id="" accept=".png,.jpg"
                                 onchange="onFileSelected(event)" required name="file">
                             <img src="assets/images/avatars/Default.svg"
                                 class="image-previewer bg-gray-200 border-4 border-white rounded-full w-full h-full"
-                                id="profileImgtag" onclick="getFile()" data-cropzee="cropzee-input">
+                                id="profileImgtag" onclick="" data-cropzee="cropzee-input">
                         </div>
                     </center>
                     <center>
@@ -87,12 +86,12 @@
                         </div>
                         <div class="col-span-2">
                             <label for="about">About me</label>
-                            <textarea id="about" name="bio" rows="3" class="shadow-none bg-gray-100"></textarea>
+                            <textarea id="about" name="bio" rows="3" required class="shadow-none bg-gray-100"></textarea>
                         </div>
                         <div class="col-span-2">
                             <label for=""> Location </label>
-                            <select id="location" name="location" class="shadow-none bg-gray-100">
-                                <option value="None">None</option>
+                            <select id="location" name="location" required class="shadow-none bg-gray-100">
+                                <option disabled selected>None</option>
                                 <option value="Mumbai">Mumbai</option>
                                 <option value="Surat">Surat</option>
                                 <option value="Thane">Thane</option>
@@ -100,16 +99,16 @@
                         </div>
                         <div>
                             <label for=""> Date of Brth</label>
-                            <input type="date" name="dob" data-uk-datepicker="{format:'DD.MM.YYYY'}" placeholder=""
+                            <input type="date" name="dob" required data-uk-datepicker="{format:'DD.MM.YYYY'}" placeholder=""
                                 class="shadow-none bg-gray-100">
                         </div>
                         <div>
                             <label for=""> Gender </label>
-                            <select id="gender" name="gender" class="shadow-none bg-gray-100">
-                                <option value="0">None</option>
-                                <option value="1">Male</option>
-                                <option value="2">Female</option>
-                                <option value="3">Transgender</option>
+                            <select id="gender" name="gender" required class="shadow-none bg-gray-100">
+                                <option disabled selected>None</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Transgender">Transgender</option>
                             </select>
                         </div>
                     </div>
@@ -152,6 +151,7 @@
         
 
         submitProfile.onclick = async (e) => {
+            validate();
             e.preventDefault();
             let response = await fetch('http://127.0.0.1:8000/create_profile', {
                 headers: myHeaders,
@@ -178,6 +178,8 @@
 
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
+    <script src="assets/js/common.js"></script>
+
     <script>
         $(document).ready(function () {
             $("#cropzee-input").cropzee({ startSize: [85, 85, '%'], });
@@ -186,24 +188,23 @@
                 history.pushState(null, document.title, location.href);
             });
         });
-        function onFileSelected(event) {
-            var selectedFile = event.target.files[0];
-            var reader = new FileReader();
-    
-            var imgtag = document.getElementById("profileImgtag");
-            imgtag.title = selectedFile.name;
-    
-            reader.onload = function (event) {
-                imgtag.src = event.target.result;
-            };
-    
-            reader.readAsDataURL(selectedFile);
-        }
         $('#about').emojioneArea({
             pickerPosition: 'bottom'
         });
     
         $('.hover-to-get-info')
+
+        function validate(){
+            var bio = document.getElementById('about').value;
+            var location = document.getElementById('location').value;
+            var gender = document.getElementById('gender').value;
+            if(bio.trim() == '' | location == "None" | gender == "None"){
+                alert('Please Fill all details');
+                window.location.reload();
+            }
+        }
+
+        
     </script>
 </body>
 </html>

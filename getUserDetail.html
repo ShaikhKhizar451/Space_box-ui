@@ -36,7 +36,7 @@
         }
     </style>
 
-    <script src="assets/js/common.js"></script>
+    
 
 
 </head>
@@ -103,7 +103,7 @@
                             </svg>
                             <span> Feed </span> </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="profile.html">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -354,7 +354,7 @@
                         <div
                             class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full m-0.5 mr-2  w-56 h-56 relative overflow-hidden uk-transition-toggle">
                             <img src=""
-                                class="bg-gray-200 border-4 border-white rounded-full w-full h-full dark:border-gray-900 profilePicture">
+                                class="bg-gray-200 border-4 border-white rounded-full w-full h-full dark:border-gray-900" id="userPicture">
                         </div>
                     </div>
 
@@ -365,7 +365,7 @@
 
 
                         <div class="capitalize flex font-semibold space-x-3 text-center text-sm my-2">
-                            <a href="#" class="bg-gray-300 shadow-sm p-2 px-6 rounded-md dark:bg-gray-700">Follow</a>
+                            <div href="" class="bg-gray-300 shadow-sm p-2 px-6 rounded-md dark:bg-gray-700 followButton" data-currId="" onclick="follow(this)"></div>
                             <div>
 
                                 <a href="#"
@@ -570,6 +570,8 @@
 
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
+    <script src="assets/js/common.js"></script>
+    
     <script>
         async function onloadFunction(){
             verify();

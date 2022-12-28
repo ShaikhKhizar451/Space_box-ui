@@ -35,7 +35,7 @@
         }
     </style>
 
-    <script src="assets/js/common.js"></script>
+
 
 </head>
 
@@ -63,8 +63,7 @@
                 <div class="flex flex-col items-center my-6 uk-visible@s">
                     <div
                         class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transition m-0.5 mr-2  w-32 h-32  relative overflow-hidden uk-transition-toggle">
-                        <img src=""
-                            class="bg-gray-200 border-4 border-white rounded-full w-full h-full profilePicture">
+                        <img src="" class="bg-gray-200 border-4 border-white rounded-full w-full h-full profilePicture">
 
                         <div
                             class="absolute -bottom-3 custom-overly1 flex justify-center pt-4 pb-7 space-x-3 text-2xl text-white uk-transition-slide-bottom-medium w-full">
@@ -148,129 +147,19 @@
 
         <div class="main_content">
 
-            <header>
+            <header class="uk-hidden@s">
                 <div class="header_inner">
                     <div class="left-side">
                         <!-- Logo -->
-                        <div id="logo" class=" uk-hidden@s">
+                        <div id="logo">
                             <a href="home.html">
                                 <img src="assets/images/logo-mobile.png" alt="">
                                 <img src="assets/images/logo-mobile-light.png" class="logo_inverse">
                             </a>
                         </div>
-
                         <div class="triger" uk-toggle="target: #wrapper ; cls: sidebar-active">
                             <i class="uil-bars"></i>
                         </div>
-
-                        <div class="header_search">
-                            <input type="text" placeholder="Search..">
-                            <div class="icon-search">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="right-side lg:pr-4">
-
-                        <!-- Notification -->
-
-                        <a href="#" class="header-links-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                            </svg>
-                        </a>
-                        <div uk-drop="mode: click;offset: 4" class="header_dropdown">
-                            <h4
-                                class="-mt-5 -mx-5 bg-gradient-to-t from-gray-100 to-gray-50 border-b font-bold px-6 py-3">
-                                Notification </h4>
-                            <ul class="dropdown_scrollbar" data-simplebar>
-                                <li>
-                                    <a href="#">
-                                        <div class="drop_avatar"> <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                                        </div>
-                                        <div class="drop_content">
-                                            <p> <strong>Adrian Mohani</strong> Lorem ipsum dolor cursus
-                                                <span class="text-link"> Adipiscing massa convallis </span>
-                                            </p>
-                                            <span class="time-ago"> 2 hours ago </span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="drop_avatar"> <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                        </div>
-                                        <div class="drop_content">
-                                            <p>
-                                                <strong>Stella Johnson</strong> Nonummy nibh euismod
-                                                <span class="text-link"> Imperdiet doming </span>
-                                            </p>
-                                            <span class="time-ago"> 9 hours ago </span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="drop_avatar"> <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                        </div>
-                                        <div class="drop_content">
-                                            <p>
-                                                <strong>Alex Dolgove</strong> Lorem ipsum dolor cursus
-                                                <span class="text-link"> Adipiscing massa convallis </span>
-                                            </p>
-                                            <span class="time-ago"> 12 hours ago </span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="drop_avatar"> <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                                        </div>
-                                        <div class="drop_content">
-                                            <p>
-                                                <strong>Stella Johnson</strong> Nonummy nibh euismod
-                                                <span class="text-link"> Imperdiet doming </span>
-                                            </p>
-                                            <span class="time-ago"> Yesterday </span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="drop_avatar"> <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                        </div>
-                                        <div class="drop_content">
-                                            <p>
-                                                <strong>Alex Dolgove</strong> Lorem ipsum dolor cursus
-                                                <span class="text-link"> Adipiscing massa convallis </span>
-                                            </p>
-                                            <span class="time-ago"> 12 hours ago </span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <a href="#" class="see-all">See all</a>
-                        </div>
-
-                        <!-- profile -->
-
-                        <a href="#">
-                            <img src="assets/images/avatars/avatar-2.jpg" class="header-avatar" alt="">
-                        </a>
-                        <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
-                            <ul>
-                                <li><a href="setting.html"> Account setting </a> </li>
-                                <li><a href="form-login.html"> Log Out</a></li>
-                            </ul>
-                        </div>
-
                     </div>
                 </div>
             </header>
@@ -289,35 +178,55 @@
                         <div class="grid lg:grid-cols-3 mt-12 gap-8" id="profile">
                             <div>
                                 <h3 class="text-xl mb-2"> Basic</h3>
-                                <p> Lorem ipsum dolor sit amet nibh consectetuer adipiscing elit</p>
+                                <p>*Email and and DOB is not updateable</p>
                             </div>
 
                             <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
-                                <form action="" method="post" id="frmUpdateProfile">
+                                <form action="" method="post" id="frmUpdateProfile" data-id="">
                                     <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                                        <div class="col-span-2" style="display: flex;">
+                                            <label for="" style="margin: auto; margin-left:0; margin-right: 2rem">Update Profile Picture</label>
+                                            <center>
+                                                <div uk-form-custom
+                                                    class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transition m-0.5 mr-2  w-32 h-32  relative overflow-hidden uk-transition-toggle">
+                                                    <input type="file" id="cropzee-input" accept=".png,.jpg"
+                                                        onchange="onFileSelected(event)" required name="file">
+                                                    <img class="image-previewer bg-gray-200 border-4 border-white rounded-full w-full h-full profilePicture" data-imageId=""
+                                                        id="profileImgtag" onclick="getFile()"
+                                                        data-cropzee="cropzee-input">
+                                                    <div
+                                                        class="absolute -bottom-3 custom-overly1 flex justify-center pt-4 pb-7 space-x-3 text-2xl text-white uk-transition-slide-bottom-medium w-full">
+
+                                                        <a href="#" class="hover:text-white">
+                                                            <i class="uil-camera"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </center>
+                                        </div>
                                         <div>
                                             <label for=""> First name</label>
-                                            <input id="first_name" type="text" placeholder="Your name.."
-                                                class="shadow-none bg-gray-100">
+                                            <input id="first_name" name="first_name" type="text"
+                                                placeholder="Your name.." required class="shadow-none bg-gray-100">
                                         </div>
                                         <div>
                                             <label for=""> Last name</label>
-                                            <input id="last_name" type="text" placeholder="Your name.."
-                                                class="shadow-none bg-gray-100">
+                                            <input id="last_name" name="last_name" type="text" placeholder="Your name.."
+                                                class="shadow-none bg-gray-100" required>
                                         </div>
                                         <div class="col-span-2">
                                             <label for=""> Email</label>
-                                            <input id="email" type="text" placeholder="Your name.."
-                                                class="shadow-none bg-gray-100">
+                                            <input id="email" disabled type="text"
+                                                placeholder="Your name.." class="shadow-none bg-gray-100">
                                         </div>
                                         <div class="col-span-2">
                                             <label for="about">About me</label>
-                                            <textarea id="about" name="about" rows="3"
-                                                class="shadow-none bg-gray-100"></textarea>
+                                            <textarea id="about" name="bio" rows="3"
+                                                class="shadow-none bg-gray-100" required></textarea>
                                         </div>
                                         <div class="col-span-2">
                                             <label for=""> Location </label>
-                                            <select id="location" name="location" class="shadow-none bg-gray-100">
+                                            <select id="location" name="location" required class="shadow-none bg-gray-100">
                                                 <option value="None">None</option>
                                                 <option value="Mumbai">Mumbai</option>
                                                 <option value="Surat">Surat</option>
@@ -326,13 +235,13 @@
                                         </div>
                                         <div>
                                             <label for=""> Date of Brth</label>
-                                            <input id="dob" type="date" name="dob"
+                                            <input id="dob" type="date" disabled
                                                 data-uk-datepicker="{format:'DD.MM.YYYY'}" placeholder=""
                                                 class="shadow-none bg-gray-100">
                                         </div>
                                         <div>
                                             <label for=""> Gender </label>
-                                            <select id="gender" name="gender" class="shadow-none bg-gray-100">
+                                            <select id="gender" name="gender" class="shadow-none bg-gray-100" required>
                                                 <option value="0">None</option>
                                                 <option value="1">Male</option>
                                                 <option value="2">Female</option>
@@ -345,7 +254,7 @@
                                         <button class="p-2 px-4 rounded bg-gray-50 text-red-500" type="reset"
                                             onclick="getAccountInfo()"> Cancel
                                         </button>
-                                        <button type="button" class="button bg-blue-700" id="btnUpdateProfile"> Save
+                                        <button type="submit" class="button bg-blue-700" id="btnUpdateProfile"> Save
                                         </button>
                                     </div>
                                 </form>
@@ -443,6 +352,8 @@
 
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
+    <script src="assets/js/common.js"></script>
+    
     <script>
         document.getElementsByTagName('body')[0].onload = async (e) => {
             e.preventDefault();
@@ -454,13 +365,31 @@
 
         btnUpdateProfile.onclick = async (e) => {
             e.preventDefault();
-            let response = await fetch('http://127.0.0.1:8000/updateProfile/id', {
+            id = document.getElementById('frmUpdateProfile').dataset.id;
+            media_id = document.getElementById('profileImgtag').dataset.imageId;
+            var data = {
+                'first_name': document.getElementById('first_name').value,
+                'last_name': document.getElementById('last_name').value,
+                'bio': document.getElementById('about').value,
+                'gender': document.getElementById('gender').value,
+                'location': document.getElementById('location').value,
+                'file': document.getElementById('profileImgtag').value, 
+            };
+            // myHeaders.append('Content-Type', 'application/json')
+            let response = await fetch('http://127.0.0.1:8000/updateProfile/' + id + '/' + media_id, {
                 headers: myHeaders,
-                method: 'Post',
-                // body: new FormData(frmUpdateProfile),
+                method: 'Put',
+                // body: JSON.stringify(data),
+                body: new FormData(frmUpdateProfile),
             });
             let result = await response.json();
-            alert("Profile Created Successfully");
+            if (result == 'Updated Successfully') {
+                alert("Profile Updated Successfully");
+                window.location.reload();
+            }
+            else {
+                alert('Something went wrong please retry...')
+            }
         }
 
 

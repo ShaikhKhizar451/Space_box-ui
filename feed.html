@@ -27,15 +27,13 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/tailwind.css">
 
-    <script src="assets/js/common.js"></script>
-
+    
 </head>
 
 <body onload="defaultFunction()">
 
 
     <div id="wrapper">
-
         <div class="sidebar">
             <div
                 class="sidebar_header border-b border-gray-200 from-gray-100 to-gray-50 bg-gradient-to-t  uk-visible@s">
@@ -55,8 +53,7 @@
                 <div class="flex flex-col items-center my-6 uk-visible@s">
                     <div
                         class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transition m-0.5 mr-2  w-32 h-32">
-                        <img src=""
-                            class="bg-gray-200 border-4 border-white rounded-full w-full h-full profilePicture">
+                        <img src="" class="bg-gray-200 border-4 border-white rounded-full w-full h-full profilePicture">
                     </div>
                     <a href="profile.html" id="fullNameTag" class="text-xl font-medium capitalize mt-4 uk-link-reset">
                     </a>
@@ -714,7 +711,7 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </div>
-                                        <div  uk-toggle="target: #viewAllComments"> Comment</div>
+                                        <div uk-toggle="target: #viewAllComments"> Comment</div>
                                     </a>
                                     <a href="#" class="flex items-center space-x-2 flex-1 justify-end">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -970,8 +967,8 @@
                                 <a href="#"> Refresh</a>
                             </div>
 
-                            <div
-                                class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 dark:divide-gray-800 dark:text-gray-100">
+                            <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 dark:divide-gray-800 dark:text-gray-100"
+                                id="suggestion_box">
                                 <div class="flex items-center justify-between py-3">
                                     <div class="flex flex-1 items-center space-x-4">
                                         <a href="profile.html">
@@ -1047,7 +1044,7 @@
                                     <h2 class="font-semibold text-lg">Latest</h2>
                                 </div>
 
-                                <div class="grid grid-cols-2 gap-2 p-3 uk-link-reset">
+                                <div class="grid grid-cols-2 gap-2 p-3 uk-link-reset" id="latestPost">
 
                                     <div
                                         class="bg-red-500 max-w-full h-32 rounded-lg relative overflow-hidden uk-transition-toggle">
@@ -1250,7 +1247,8 @@
                     </p>
                     <form action="" method="post" id="formElem">
                         <div uk-form-custom>
-                            <input type="file" id="postImg" accept=".png,.jpg,.mp4,.jpeg,.gif,.webm,.ogg,.mkv" required onchange="return fileValidationForPost()">
+                            <input type="file" id="postImg" accept=".png,.jpg,.mp4,.jpeg,.gif,.webm,.ogg,.mkv" required
+                                onchange="return fileValidationForPost()">
                             <a href="#" class="button soft-warning small"> Choose file</a>
                         </div>
                         <div class="grid grid-cols-1 gap-4 lg:p-6 p-4">
@@ -1316,6 +1314,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
 
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+    <script src="assets/js/common.js"></script>
 </body>
 <script>
     $(document).ready(function () {
@@ -1359,17 +1359,19 @@
     async function defaultFunction() {
         verify();
         await getDefaultValues();
-        loadPost();
+        loadPost("/getAllPost?page_start=1&page_end=4");
+        getSuggestionUser();
     }
 
-    async function loadPost() {
-        let response = await fetch('http://127.0.0.1:8000/getAllPost', {
+    async function loadPost(nextLink) {
+        document.getElementById('toggle').remove();
+        let response = await fetch('http://127.0.0.1:8000' + nextLink, {
             headers: myHeaders,
             method: 'Get'
         });
         let result = await response.json();
         console.log(result);
-        showPost(result.reverse());
+        showPost(result, new URL(response.url).searchParams.get('page_start'));
     }
 </script>
 
