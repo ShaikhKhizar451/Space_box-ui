@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="assets/css/uikit.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/tailwind.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
 
     <style>
         .pb-7 {
@@ -47,7 +48,7 @@
         <div class="sidebar">
             <div
                 class="sidebar_header border-b border-gray-200 from-gray-100 to-gray-50 bg-gradient-to-t  uk-visible@s">
-                <a href="index.html">
+                <a href="feed.html">
                     <img src="assets/images/logo.png">
                     <img src="assets/images/logo-light.png" class="logo_inverse">
                 </a>
@@ -100,7 +101,7 @@
                 <hr class="-mx-4 -mt-1 uk-visible@s">
                 <ul>
                     <li>
-                        <a href="index.html">
+                        <a href="feed.html">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -152,7 +153,7 @@
                     <div class="left-side">
                         <!-- Logo -->
                         <div id="logo">
-                            <a href="index.html">
+                            <a href="feed.html">
                                 <img src="assets/images/logo-mobile.png" alt="">
                                 <img src="assets/images/logo-mobile-light.png" class="logo_inverse">
                             </a>
@@ -227,10 +228,7 @@
                                         <div class="col-span-2">
                                             <label for=""> Location </label>
                                             <select id="location" name="location" required class="shadow-none bg-gray-100">
-                                                <option value="None">None</option>
-                                                <option value="Mumbai">Mumbai</option>
-                                                <option value="Surat">Surat</option>
-                                                <option value="Thane">Thane</option>
+                                                <option value="" disabled>None</option>
                                             </select>
                                         </div>
                                         <div>
@@ -353,6 +351,8 @@
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
     <script src="assets/js/common.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     
     <script>
         document.getElementsByTagName('body')[0].onload = async (e) => {
@@ -360,6 +360,8 @@
             verify();
             getDefaultValues();
             getAccountInfo();
+            locationLoad();
+            $("#location").select2();
         }
 
 

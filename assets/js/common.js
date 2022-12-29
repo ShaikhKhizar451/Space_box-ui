@@ -21,7 +21,7 @@ var user_id = '';
 function verify() {
     var token = sessionStorage.getItem("token");
     if (token === null) {
-        window.location.replace("./form-login.html");
+        window.location.replace("./index.html");
     }
 }
 function logout() {
@@ -29,7 +29,7 @@ function logout() {
     a = confirm("You are about to Logout!")
     if (a) {
         sessionStorage.clear();
-        window.location.href = 'form-login.html'
+        window.location.href = 'index.html'
     }
 }
 
@@ -681,4 +681,31 @@ function getStoryModal(data) {
         document.getElementById('postlink').innerHTML = nodeVideo;
         setInterval(function () { document.getElementById('postVideo').style.inlineSize = 'auto' }, 5000);
     }
+}
+
+function locationLoad() {
+    (async () => {
+        const where = encodeURIComponent(JSON.stringify({
+            "ascii_name": {
+                "$exists": true
+            }
+        }));
+        const response = await fetch(
+            `https://parseapi.back4app.com/classes/india_cities_database?limit=4000&order=ascii_name&keys=ascii_name&where=${where}`,
+            {
+                headers: {
+                    'X-Parse-Application-Id': 'k9wzhXDJckHtuuKmMEm8hceXoCZMvxN4CTijZOjn', // This is the fake app's application id
+                    'X-Parse-Master-Key': 'EpjKI6bUlgkIbOAAUaDKDFj6x2C3AnsZZJqoa4ak', // This is the fake app's readonly master key
+                }
+            }
+        );
+        const data = await response.json(); // Here you have the data that you need
+        for (let i = 0; i < data.results.length; i++) {
+            slt = document.getElementById("location");
+            opt = document.createElement("option");
+            opt.text = data.results[i].ascii_name;
+            opt.value = data.results[i].ascii_name;
+            slt.appendChild(opt);
+        }
+    })();
 }

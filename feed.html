@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,38 +21,23 @@
     <link rel="stylesheet" href="assets/css/icons.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" />
-
     <!-- CSS 
         ================================================== -->
     <link rel="stylesheet" href="assets/css/uikit.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/tailwind.css">
-    <style>
-        @media (min-width: 1024px) {
-            header .header_inner {
-                max-width: 980px;
-            }
-
-            .pro-container {
-                max-width: 860px;
-            }
-        }
-    </style>
-
-
 
 
 </head>
 
-<body onload="onloadFunction()">
+<body onload="defaultFunction()">
 
 
     <div id="wrapper">
-
         <div class="sidebar">
             <div
                 class="sidebar_header border-b border-gray-200 from-gray-100 to-gray-50 bg-gradient-to-t  uk-visible@s">
-                <a href="feed.html">
+                <a href="#">
                     <img src="assets/images/logo.png">
                     <img src="assets/images/logo-light.png" class="logo_inverse">
                 </a>
@@ -95,7 +81,7 @@
                 </div>
                 <hr class="-mx-4 -mt-1 uk-visible@s">
                 <ul>
-                    <li>
+                    <li class="active">
                         <a href="feed.html">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -104,7 +90,7 @@
                             </svg>
                             <span> Feed </span> </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="profile.html">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -112,17 +98,6 @@
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                             <span> My Profile </span> </a>
-                    </li>
-                    <li class="uk-hidden@s">
-                        <a href="#post-modal" uk-toggle>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon s-ion-icon" viewBox="0 0 512 512" style="fill: #be185d;">
-                                <title>Add Circle</title>
-                                <path
-                                    d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm80 224h-64v64a16 16 0 01-32 0v-64h-64a16 16 0 010-32h64v-64a16 16 0 0132 0v64h64a16 16 0 010 32z">
-                                </path>
-                            </svg>
-                            <span> Upload Post </span>
-                        </a>
                     </li>
                     <li>
                         <a href="setting.html">
@@ -134,6 +109,17 @@
                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                             <span> Settings </span>
+                        </a>
+                    </li>
+                    <li class="uk-hidden@s">
+                        <a href="#post-modal" uk-toggle>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon s-ion-icon" viewBox="0 0 512 512" style="fill: #be185d;">
+                                <title>Add Circle</title>
+                                <path
+                                    d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm80 224h-64v64a16 16 0 01-32 0v-64h-64a16 16 0 010-32h64v-64a16 16 0 0132 0v64h64a16 16 0 010 32z">
+                                </path>
+                            </svg>
+                            <span> Upload Post </span>
                         </a>
                     </li>
                     <li>
@@ -159,7 +145,7 @@
                     <div class="left-side">
                         <!-- Logo -->
                         <div id="logo" class=" uk-hidden@s">
-                            <a href="feed.html">
+                            <a href="#">
                                 <img src="assets/images/logo-mobile.png" alt="">
                                 <img src="assets/images/logo-mobile-light.png" class="logo_inverse">
                             </a>
@@ -197,7 +183,7 @@
                         <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
                             <ul>
                                 <li><a href="setting.html"> Account setting </a> </li>
-                                <li><a href="index.html"> Log Out</a></li>
+                                <li><a onclick="logout()"> Log Out</a></li>
                             </ul>
                         </div>
 
@@ -205,67 +191,55 @@
                 </div>
             </header>
 
-            <div class="container pro-container m-auto">
+            <div class="container m-auto">
 
-                <!-- profile-cover-->
-                <div class="flex lg:flex-row flex-col items-center lg:py-8 lg:space-x-8">
+                <h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mb-5"> Feed
+                </h1>
 
-                    <div>
-                        <div
-                            class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full m-0.5 mr-2  w-56 h-56 relative overflow-hidden uk-transition-toggle">
-                            <img src=""
-                                class="bg-gray-200 border-4 border-white rounded-full w-full h-full dark:border-gray-900 profilePicture">
-                        </div>
-                    </div>
+                <div class="lg:flex justify-center lg:space-x-10 lg:space-y-0 space-y-5">
 
-                    <div class="lg:w/8/12 flex-1 flex flex-col lg:items-start items-center">
-
-                        <h2 class="font-semibold lg:text-2xl text-lg mb-2" id="ProfilefullNameTag"></h2>
-                        <p class="lg:text-left mb-2 text-center  dark:text-gray-100" id="ProfileBio"> </p>
-
-
-                        <div class="capitalize flex font-semibold space-x-3 text-center text-sm my-2">
-                            <a href="setting.html" class="bg-gray-300 shadow-sm p-2 px-4 rounded-md dark:bg-gray-700">
-                                Edit Your Profile
-                                <ion-icon name="pencil" class="-mb-1
-                             opacity-90 text-xl uilus-circle"></ion-icon></a>
-                        </div>
-
-                        <div
-                            class="divide-gray-300 divide-transparent divide-x grid grid-cols-3 lg:text-left lg:text-lg mt-3 text-center w-full dark:text-gray-100">
-                            <div class="flex lg:flex-row flex-col"><span id="ProfilePost"></span><strong
-                                    class="lg:pl-2"> Posts</strong></div>
-                            <div class="lg:pl-4 flex lg:flex-row flex-col"><span id="ProfileFollowers"></span><strong
-                                    class="lg:pl-2"> Followers</strong></div>
-                            <div class="lg:pl-4 flex lg:flex-row flex-col"><span id="ProfileFollowing"></span><strong
-                                    class="lg:pl-2"> Following</strong></div>
-                        </div>
+                    <!-- left sidebar-->
+                    <div class="space-y-5 flex-shrink-0 lg:w-7/12" id="postCard">
 
                     </div>
 
-                    <div class="w-20"></div>
+                    <!-- right sidebar-->
+                    <div class="lg:w-5/12">
 
-                </div>
+                        <div class="bg-white dark:bg-gray-900 shadow-md rounded-md overflow-hidden">
 
+                            <div
+                                class="bg-gray-50 dark:bg-gray-800 border-b border-gray-100 flex items-baseline justify-between py-4 px-6 dark:border-gray-800">
+                                <h2 class="font-semibold text-lg">Who to follow</h2>
+                                <a href="#"> Refresh</a>
+                            </div>
 
-                <div class="flex items-center justify-between mt-8 space-x-3">
-                    <h1
-                        class="flex-1 font-extrabold leading-none lg:text-2xl text-lg text-gray-900 tracking-tight uk-heading-line">
-                        <span>Post</span>
-                    </h1>
-                    <div
-                        class="bg-white border border-2 border-gray-300 divide-gray-300 divide-x flex rounded-md shadow-sm dark:bg-gray-100">
+                            <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 dark:divide-gray-800 dark:text-gray-100"
+                                id="suggestion_box">
 
+                            </div>
+
+                        </div>
+
+                        <div class="mt-5" uk-sticky="offset:28; bottom:true ; media @m">
+                            <div class="bg-white dark:bg-gray-900 shadow-md rounded-md overflow-hidden">
+
+                                <div
+                                    class="bg-gray-50 border-b border-gray-100 flex items-baseline justify-between py-4 px-6 dark:bg-gray-800 dark:border-gray-700">
+                                    <h2 class="font-semibold text-lg">Latest</h2>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-2 p-3 uk-link-reset" id="latestPost">
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="my-6 grid lg:grid-cols-4 grid-cols-2 gap-1.5 hover:text-yellow-700 uk-link-reset"
-                    id="all_post">
-                    <p>No Post To Show</p>
                 </div>
             </div>
         </div>
     </div>
+
 
 
     <!-- Story modal -->
@@ -290,39 +264,9 @@
                         </a>
                         <span class="block text-lg font-semibold" id="name"> </span>
                     </div>
-                    <div>
-                        <a href="#"> <i
-                                class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700"></i>
-                        </a>
-                        <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700"
-                            uk-drop="mode: hover;pos: top-right">
-
-                            <ul class="space-y-1">
-                                <li>
-                                    <a href="#" onclick="hideCommentPart()"
-                                        class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                        <i class="uil-edit-alt mr-1"></i> Edit Post Caption
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="-mx-2 my-2 dark:border-gray-800">
-                                </li>
-                                <li>
-                                    <a href="#" id="deleteBtn" onclick="deletePost(this)" data-mediaid=""
-                                        class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600">
-                                        <i class="uil-trash-alt mr-1"></i> Delete
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
                 </div>
-                <p id="caption"> </p>
-                <div class="story-content p-4" data-simplebar id="commentSection">
-
-
-
+                <p id="modalCaption"> </p>
+                <div class="story-content p-4" data-simplebar>
                     <div class="py-4 ">
                         <hr class="-mx-4 my-3">
                         <div class="flex items-center space-x-3">
@@ -354,24 +298,9 @@
                                 consectetuer adipiscing elit
                             </div>
                         </div>
-
-                    </div>
-
-
-                </div>
-                <div class="p-3 border-t dark:border-gray-600">
-                    <div class="bg-gray-200 dark:bg-gray-700 rounded-full rounded-md relative" id="textareaCaption">
-                        <input id="UpdatedCaption" type="text" placeholder="Add your Comment.."
-                            class="bg-transparent max-h-8 shadow-none">
-                        <div class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">
-                            <a onclick="UpdatePostCaption(this)" id="btnSubmitCaption" data-mediaId=""> <i
-                                    class="uil-message"></i></a>
-                        </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 
@@ -418,7 +347,7 @@
                         <div class="grid grid-cols-1 gap-4 lg:p-6 p-4">
                             <div>
                                 <input type="text" placeholder="*Write a caption..." class="shadow-none bg-gray-100"
-                                    id="uploadCaption" required>
+                                    id="caption" required>
                             </div>
                             <div>
                                 <button class="button soft-warning small" type="submit" id="submit">Share</button>
@@ -429,7 +358,7 @@
         </div>
 
     </div>
-
+    </div>
     <script>
 
         (function (window, document, undefined) {
@@ -475,117 +404,74 @@
     <script src="assets/js/simplebar.js"></script>
     <script src="assets/js/custom.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
 
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
-
     <script src="assets/js/common.js"></script>
+</body>
+<script>
+    $(document).ready(function () {
+        history.pushState(null, document.title, location.href);
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, document.title, location.href);
+        });
+    });
+    $("input[type=file]").on('change', function () {
+        $('#afteruploadtext')[0].innerHTML = 'You have Uploaded ' + this.files[0].name;
+    });
 
-    <script>
-        async function onloadFunction() {
-            verify();
-            await getDefaultValues();
-            getProfileInfo();
-        }
-        function hideCommentPart() {
-            document.getElementById('commentSection').remove()
-            // <textarea  id="caption" name="caption" id="" cols="30" rows="10" placeholder="Add your New Caption.." class="bg-transparent max-h-8 shadow-none"></textarea>
-            $(document.getElementById('textareaCaption')).removeClass('rounded-full').addClass('rounded-half')
-        }
-
-        $('#uploadCaption').emojioneArea({
-            pickerPosition: 'bottom'
+    formElem.onsubmit = async (e) => {
+        e.preventDefault();
+        showloader();
+        var input = document.querySelector('input[type="file"]')
+        var data = new FormData();
+        data.append('caption', document.getElementById('caption').value);
+        data.append('likes', 0);
+        data.append('created_on', new Date().toLocaleDateString([], { hour: '2-digit', minute: "2-digit", hour12: false }));
+        data.append('file', input.files[0]);
+        let response = await fetch('https://space-box.onrender.com/create_post', {
+            headers: myHeaders,
+            method: 'post',
+            body: data,
         });
 
-        $("input[type=file]").on('change', function () {
-            $('#afteruploadtext')[0].innerHTML = 'You have Uploaded ' + this.files[0].name;
-        });
-
-        formElem.onsubmit = async (e) => {
-            e.preventDefault();
-            showloader();
-            var input = document.querySelector('input[type="file"]')
-            var data = new FormData();
-            data.append('caption', document.getElementById('uploadCaption').value);
-            data.append('likes', 0);
-            data.append('created_on', new Date().toLocaleDateString([], { hour: '2-digit', minute: "2-digit", hour12: false }));
-            data.append('file', input.files[0]);
-            let response = await fetch('https://space-box.onrender.com/create_post', {
-                headers: myHeaders,
-                method: 'post',
-                body: data,
-            });
-
-            let result = await response.json();
-            if (result == "Post Created Successfully") {
-                alert("Post Created Successfully")
-                window.location.reload();
-            }
-            else {
-                alert("Something is wrong!!!")
-            }
-            hideloader();
-        }
-
-        async function UpdatePostCaption() {
-            showloader();
-            var caption = document.getElementById('UpdatedCaption').value;
-            var id = document.getElementById('btnSubmitCaption').dataset.mediaid;
-            let response = await fetch('https://space-box.onrender.com/update_caption/' + id + '/' + caption, {
-                headers: myHeaders,
-                method: 'Put'
-            });
-            let result = await response.json();
-            hideloader();
-            alert(result);
+        let result = await response.json();
+        if (result == "Post Created Successfully") {
+            alert("Post Created Successfully")
             window.location.reload();
         }
-        async function deletePost(data) {
-            var id = data.dataset.mediaid;
-            if (confirm('Are you sure you want to delete your post...?') == true) {
-                showloader();
-                let response = await fetch('https://space-box.onrender.com/delete_post/' + id, {
-                    headers: myHeaders,
-                    method: 'delete'
-                });
-                if (response.status == 204) {
-                    alert("Post Deleted Successfully...")
-                }
-                hideloader();
-                window.location.reload();
-            }
-            else {
-                alert("Post is not deleted Yet you data is saved...");
-                window.location.reload();
-            }
+        else {
+            alert("Something is wrong!!!")
         }
-        function getStoryModalForProfile(data) {
-            UIkit.modal(document.getElementById('story-modal')).show();
-            document.getElementById('profilePic').src = data.dataset.profilepic
-            document.getElementById('name').innerHTML = data.dataset.name
-            document.getElementById('caption').innerHTML = data.dataset.caption
-            document.getElementById('btnSubmitCaption').dataset.mediaid = data.dataset.mediaid
-            document.getElementById('deleteBtn').dataset.mediaid = data.dataset.mediaid
-            isImage = data.dataset.isimage
-            if (isImage == "true") {
-                nodeImage = '<img src="' + data.dataset.postlink + '" alt="" class="inset-0 h-full w-full object-cover" style="width: 660px;">'
-                document.getElementById('postlink').innerHTML = nodeImage;
-            }
-            else {
-                nodeVideo = '<video id="postVideo" src="' + data.dataset.postlink + '" class="inset-0 h-full w-full object-cover" controls  style="width: 660px; max-height: 880px;"></video>'
-                document.getElementById('postlink').innerHTML = nodeVideo;
-                setInterval(function () { document.getElementById('postVideo').style.inlineSize = 'auto' }, 5000);
-            }
-        }
-    </script>
-    <style>
-        video::-webkit-media-controls-fullscreen-button {
-            pointer-events: none;
-            opacity: .5;
-        }
-    </style>
+        hideloader();
+    }
+    $('#caption').emojioneArea({
+        pickerPosition: 'bottom'
+    });
 
-</body>
+    async function defaultFunction() {
+        verify();
+        await getDefaultValues();
+        loadPost("/getAllPost?page_start=1&page_end=4");
+        getSuggestionUser();
+    }
+
+    async function loadPost(nextLink) {
+        showloader();
+        var searchPage = new URL('https://space-box.onrender.com' + nextLink)
+        if (searchPage.searchParams.get('page_start') != '1') {
+            document.getElementById('toggle').remove();
+        }
+        let response = await fetch('https://space-box.onrender.com' + nextLink, {
+            headers: myHeaders,
+            method: 'Get'
+        });
+        let result = await response.json();
+        hideloader();
+        console.log(result);
+        showPost(result, new URL(response.url).searchParams.get('page_start'));
+    }
+</script>
 
 </html>
