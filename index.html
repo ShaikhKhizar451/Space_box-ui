@@ -419,7 +419,7 @@
         data.append('likes', 0);
         data.append('created_on', new Date().toLocaleDateString([], { hour: '2-digit', minute: "2-digit", hour12: false }));
         data.append('file', input.files[0]);
-        let response = await fetch('https://space-box.onrender.com//create_post', {
+        let response = await fetch('https://space-box.onrender.com/create_post', {
             headers: myHeaders,
             method: 'post',
             body: data,
@@ -448,11 +448,11 @@
 
     async function loadPost(nextLink) {
         showloader();
-        var searchPage = new URL('https://space-box.onrender.com/' + nextLink)
+        var searchPage = new URL('https://space-box.onrender.com' + nextLink)
         if (searchPage.searchParams.get('page_start') != '1') {
             document.getElementById('toggle').remove();
         }
-        let response = await fetch('https://space-box.onrender.com/' + nextLink, {
+        let response = await fetch('https://space-box.onrender.com' + nextLink, {
             headers: myHeaders,
             method: 'Get'
         });
