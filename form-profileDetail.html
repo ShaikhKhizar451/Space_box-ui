@@ -140,7 +140,7 @@
             e.preventDefault();
             verify();
             showloader();
-            let currentUserResponse = await fetch('http://127.0.0.1:8000/getCurrentUser', {
+            let currentUserResponse = await fetch('https://space-box.onrender.com//getCurrentUser', {
                 headers: myHeaders,
                 method: 'Get',
             });
@@ -156,7 +156,7 @@
             validate();
             e.preventDefault();
             showloader();
-            let response = await fetch('http://127.0.0.1:8000/create_profile', {
+            let response = await fetch('https://space-box.onrender.com//create_profile', {
                 headers: myHeaders,
                 method: 'Post',
                 body: new FormData(createProfile),
@@ -164,7 +164,7 @@
             let result = await response.json();
             hideloader();
             alert("Profile Created Successfully");
-            window.location.href = "feed.html"
+            window.location.href = "index.html"
         }
     </script>
 

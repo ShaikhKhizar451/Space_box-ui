@@ -51,7 +51,7 @@
         <div class="sidebar">
             <div
                 class="sidebar_header border-b border-gray-200 from-gray-100 to-gray-50 bg-gradient-to-t  uk-visible@s">
-                <a href="feed.html">
+                <a href="index.html">
                     <img src="assets/images/logo.png">
                     <img src="assets/images/logo-light.png" class="logo_inverse">
                 </a>
@@ -96,7 +96,7 @@
                 <hr class="-mx-4 -mt-1 uk-visible@s">
                 <ul>
                     <li>
-                        <a href="feed.html">
+                        <a href="index.html">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -148,7 +148,7 @@
                     <div class="left-side">
                         <!-- Logo -->
                         <div id="logo" class=" uk-hidden@s">
-                            <a href="feed.html">
+                            <a href="index.html">
                                 <img src="assets/images/logo-mobile.png" alt="">
                                 <img src="assets/images/logo-mobile-light.png" class="logo_inverse">
                             </a>
@@ -500,7 +500,7 @@
             data.append('likes', 0);
             data.append('created_on', new Date().toLocaleDateString([], { hour: '2-digit', minute: "2-digit", hour12: false }));
             data.append('file', input.files[0]);
-            let response = await fetch('http://127.0.0.1:8000/create_post', {
+            let response = await fetch('https://space-box.onrender.com//create_post', {
                 headers: myHeaders,
                 method: 'post',
                 body: data,
@@ -521,7 +521,7 @@
             showloader();
             var caption = document.getElementById('UpdatedCaption').value;
             var id = document.getElementById('btnSubmitCaption').dataset.mediaid;
-            let response = await fetch('http://127.0.0.1:8000/update_caption/' + id + '/' + caption, {
+            let response = await fetch('https://space-box.onrender.com//update_caption/' + id + '/' + caption, {
                 headers: myHeaders,
                 method: 'Put'
             });
@@ -534,7 +534,7 @@
             var id = data.dataset.mediaid;
             if (confirm('Are you sure you want to delete your post...?') == true) {
                 showloader();
-                let response = await fetch('http://127.0.0.1:8000/delete_post/' + id, {
+                let response = await fetch('https://space-box.onrender.com//delete_post/' + id, {
                     headers: myHeaders,
                     method: 'delete'
                 });
