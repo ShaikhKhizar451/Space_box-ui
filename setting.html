@@ -47,7 +47,7 @@
         <div class="sidebar">
             <div
                 class="sidebar_header border-b border-gray-200 from-gray-100 to-gray-50 bg-gradient-to-t  uk-visible@s">
-                <a href="#">
+                <a href="feed.html">
                     <img src="assets/images/logo.png">
                     <img src="assets/images/logo-light.png" class="logo_inverse">
                 </a>
@@ -152,7 +152,7 @@
                     <div class="left-side">
                         <!-- Logo -->
                         <div id="logo">
-                            <a href="home.html">
+                            <a href="feed.html">
                                 <img src="assets/images/logo-mobile.png" alt="">
                                 <img src="assets/images/logo-mobile-light.png" class="logo_inverse">
                             </a>
@@ -178,7 +178,7 @@
                         <div class="grid lg:grid-cols-3 mt-12 gap-8" id="profile">
                             <div>
                                 <h3 class="text-xl mb-2"> Basic</h3>
-                                <p>*Email and and DOB is not updateable</p>
+                                <p>*You cannot update your Email and DOB once user is registered.</p>
                             </div>
 
                             <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
@@ -363,8 +363,9 @@
         }
 
 
-        btnUpdateProfile.onclick = async (e) => {
+        frmUpdateProfile.onsubmit = async (e) => {
             e.preventDefault();
+            showloader();
             id = document.getElementById('frmUpdateProfile').dataset.id;
             media_id = document.getElementById('profileImgtag').dataset.imageId;
             var data = {
@@ -383,6 +384,7 @@
                 body: new FormData(frmUpdateProfile),
             });
             let result = await response.json();
+            hideloader();
             if (result == 'Updated Successfully') {
                 alert("Profile Updated Successfully");
                 window.location.reload();

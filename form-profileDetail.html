@@ -138,12 +138,14 @@
     <script>
         document.getElementsByTagName('body')[0].onload = async(e) => {
             e.preventDefault();
-            // verify();
+            verify();
+            showloader();
             let currentUserResponse = await fetch('http://127.0.0.1:8000/getCurrentUser', {
                 headers: myHeaders,
                 method: 'Get',
             });
             let result = await currentUserResponse.json();
+            hideloader();
             document.getElementById('first_name').value = result.first_name;
             document.getElementById('last_name').value = result.last_name;
             document.getElementById('email').value = result.email;
@@ -153,12 +155,14 @@
         submitProfile.onclick = async (e) => {
             validate();
             e.preventDefault();
+            showloader();
             let response = await fetch('http://127.0.0.1:8000/create_profile', {
                 headers: myHeaders,
                 method: 'Post',
                 body: new FormData(createProfile),
             });
             let result = await response.json();
+            hideloader();
             alert("Profile Created Successfully");
             window.location.href = "feed.html"
         }

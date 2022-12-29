@@ -113,6 +113,7 @@
                 alert("Password length must be greater then 8 Charater")
             }
             else {
+                showloader();
                 var data = {
                     'first_name': document.getElementById('first_name').value,
                     'last_name': document.getElementById('last_name').value,
@@ -127,15 +128,18 @@
                     body: JSON.stringify(data),
                 });
                 let result = await response.json();
+                hideloader();
                 alert("User Registered Successfully");
 
                 // Get Token for new user
+                showloader();
                 sessionStorage.clear();
                 let loginResponse = await fetch('http://127.0.0.1:8000/authentication', {
                     method: 'POST',
                     body: new FormData(createUserForm),
                 })
                 let loginResult = await loginResponse.json();
+                hideloader();
                 console.log(loginResult['detail']);
                 if (loginResult['detail'] == "Invalid Credentials" || loginResult['detail'] == "Incorrect Password" || loginResult['detail'] == "Not Found") {
                     alert("wrong username or password");

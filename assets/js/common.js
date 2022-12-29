@@ -5,14 +5,14 @@ var wrapper = document.getElementById('wrapper');
 var loader = document.createElement('div');
 loader.className = 'uk-icon uk-spinner';
 loader.id = 'loader';
-loader.setAttribute('uk-spinner','ratio: 3');
+loader.setAttribute('uk-spinner', 'ratio: 3');
 wrapper.prepend(loader);
 
-function showloader(){
-    document.getElementById('loader').style.display='block';
+function showloader() {
+    document.getElementById('loader').style.display = 'block';
 }
-function hideloader(){
-    document.getElementById('loader').style.display='none';
+function hideloader() {
+    document.getElementById('loader').style.display = 'none';
 }
 
 var user_id = '';
@@ -52,40 +52,46 @@ async function getProfileInfo() {
 
         let postProfile = document.querySelector('#all_post');
         let s = ''
-        result.all_post.forEach((post, i) => {
-            s += `<div>
+        if (result.all_post.length == 0) {
+            postProfile.innerHTML = 'No Post to Show';
+            hideloader();
+        }
+        else {
+            result.all_post.forEach((post, i) => {
+                s += `<div>
             <div class="bg-white-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle"
                 tabindex="0">
                     ${(() => {
-                    if (post.isImage == true) {
-                        return `<img src="${post.thumbnail_url}" class="w-full h-full absolute object-cover inset-0">`
-                    }
-                    else {
-                        if (post.thumbnail_url == ' ') {
-                            return `<video src="${post.web_url}" class="w-full h-full absolute object-cover inset-0"></video>`
-                        }
-                        else {
+                        if (post.isImage == true) {
                             return `<img src="${post.thumbnail_url}" class="w-full h-full absolute object-cover inset-0">`
                         }
+                        else {
+                            if (post.thumbnail_url == ' ') {
+                                return `<video src="${post.web_url}" class="w-full h-full absolute object-cover inset-0"></video>`
+                            }
+                            else {
+                                return `<img src="${post.thumbnail_url}" class="w-full h-full absolute object-cover inset-0">`
+                            }
+                        }
+                    })()
                     }
-                })()
-                }
     
                 <div
                     class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">
-                    <a href="#story-modal" onclick=getStoryModal(this) class="flex items-center" data-userid='${post.user_id}' 
+                    <a href="#story-modal" onclick=getStoryModalForProfile(this) class="flex items-center" data-userid='${post.user_id}' 
                     data-name='${post.first_name} ${post.last_name}' data-postLink='${post.web_url}' data-isImage=${post.isImage}
                     data-likes='${post.likes}' data-profilePic='${post.profile_pic}' data-caption='${post.caption}' data-mediaId='${post.id}'> <ion-icon name="heart"
                             class="mr-1"></ion-icon>${post.likes}</a>
                     <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon
                             name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
-                </div>
-    
-            </div>
-        </div>`
-        });
-        postProfile.innerHTML = s;
-        hideloader();
+                    </div>
+        
+                    </div>
+                </div>`
+            });
+            postProfile.innerHTML = s;
+            hideloader();
+        }
     }
     else {
         showloader();
@@ -111,38 +117,45 @@ async function getProfileInfo() {
 
         let postProfile = document.querySelector('#all_post');
         let s = ''
-        result.all_post.forEach((post, i) => {
-            s += `<div>
+        if (result.all_post.length == 0) {
+            postProfile.innerHTML = 'No Post to Show';
+            hideloader();
+        }
+        else {
+            result.all_post.forEach((post, i) => {
+                s += `<div>
         <div class="bg-white-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle"
             tabindex="0">
                 ${(() => {
-                    if (post.isImage == true) {
-                        return `<img src="${post.thumbnail_url}" class="w-full h-full absolute object-cover inset-0">`
-                    }
-                    else {
-                        if (post.thumbnail_url == ' ') {
-                            return `<video src="${post.web_url}" class="w-full h-full absolute object-cover inset-0"></video>`
-                        }
-                        else {
+                        if (post.isImage == true) {
                             return `<img src="${post.thumbnail_url}" class="w-full h-full absolute object-cover inset-0">`
                         }
+                        else {
+                            if (post.thumbnail_url == ' ') {
+                                return `<video src="${post.web_url}" class="w-full h-full absolute object-cover inset-0"></video>`
+                            }
+                            else {
+                                return `<img src="${post.thumbnail_url}" class="w-full h-full absolute object-cover inset-0">`
+                            }
+                        }
+                    })()
                     }
-                })()
-                }
+                        <div
+                            class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">
+                            <a href="#story-modal" onclick=getStoryModal(this) class="flex items-center" data-userid='${post.user_id}' 
+                            data-name='${post.first_name} ${post.last_name}' data-postLink='${post.web_url}' data-isImage=${post.isImage}
+                            data-likes='${post.likes}' data-profilePic='${post.profile_pic}' data-caption='${post.caption}' data-mediaId='${post.id}'> <ion-icon name="heart"
+                                    class="mr-1"></ion-icon>${post.likes}</a>
+                            <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon
+                                    name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
+                            </div>
 
-            <div
-                class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">
-                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="heart"
-                        class="mr-1"></ion-icon> ${post.likes} </a>
-                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon
-                        name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
-            </div>
-
-        </div>
-    </div>`
-        });
-        postProfile.innerHTML = s;
-        hideloader();
+                            </div>
+                        </div>`
+            });
+            postProfile.innerHTML = s;
+            hideloader();
+        }
     }
 
 
@@ -180,7 +193,7 @@ async function getDefaultValues() {
         method: 'Get'
     });
     let result = await response.json();
-    if(result.detail=='Profile not found'){
+    if (result.detail == 'Profile not found') {
         alert("Please create Profile First!!!");
         window.location.href = 'form-profileDetail.html'
     }
@@ -327,19 +340,24 @@ async function showPost(result, page_start) {
 
     </div>
         ${(() => {
-            if (i == 3) {
-                return `<!-- Load more-->
-                <div class="flex justify-center mt-6" id="toggle">
-                    <a onclick="loadPost('${res.pagination.next}')"
-                        class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
-                        Load more ..</a>
-                </div>`;
-            }
-            else{
-                return ` `;
-            }
-        })()
-        }
+                    if (i == 3) {
+                        if (res.pagination.next != null) {
+                            return `<!-- Load more-->
+                            <div class="flex justify-center mt-6" id="toggle">
+                                <a onclick="loadPost('${res.pagination.next}')"
+                                    class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
+                                    Load more ..</a>
+                            </div>`;
+                        }
+                        else {
+                            return ` `
+                        }
+                    }
+                    else {
+                        return ` `;
+                    }
+                })()
+                }
         `
         });
         PostCard.innerHTML = s;
@@ -472,19 +490,24 @@ async function showPost(result, page_start) {
 
     </div>
     ${(() => {
-        if (i == 3) {
-            return `<!-- Load more-->
-            <div class="flex justify-center mt-6" id="toggle">
-                <a  onclick="loadPost('${res.pagination.next}')"
-                    class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
-                    Load more ..</a>
-            </div>`
-        }
-        else{
-            return ` `
-        }
-    })()
-    }
+                    if (i == 3) {
+                        if (res.pagination.next != null) {
+                            return `<!-- Load more-->
+                                <div class="flex justify-center mt-6" id="toggle">
+                                    <a onclick="loadPost('${res.pagination.next}')"
+                                        class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
+                                        Load more ..</a>
+                                </div>`;
+                        }
+                        else {
+                            return ` `
+                        }
+                    }
+                    else {
+                        return ` `
+                    }
+                })()
+                }
     `
         });
         PostCard.innerHTML += s;
@@ -569,20 +592,22 @@ function latestPost(data) {
     let s = ''
     post.forEach((post, i) => {
         s += `<div class="bg-gray-500 max-w-full h-32 rounded-lg relative overflow-hidden uk-transition-toggle">
-        <a href="#story-modal" uk-toggle>
+        <a>
         ${(() => {
-            if (post.isImage == true) {
-                return `<img src='${post.web_url}' alt=""></img>`
+                if (post.isImage == true) {
+                    return `<img src='${post.web_url}' alt=""></img>`
+                }
+                else {
+                    return `<video src='${post.web_url}' controls style='margin: auto;'></video>`
+                }
+            })()
             }
-            else {
-                return `<video src='${post.web_url}' controls style='margin: auto;'></video>`
-            }
-        })()
-        }
         </a>
         <div
             class="flex flex-1 justify-around items-center absolute bottom-0 w-full p-2 text-white custom-overly1 uk-transition-slide-bottom-medium">
-            <a href="#"> <i class="uil-heart"></i> ${post.likes} </a>
+            <a href="#story-modal" onclick=getStoryModal(this) class="flex items-center" data-userid='${post.user_id}' 
+            data-name='${post.first_name} ${post.last_name}' data-postLink='${post.web_url}' data-isImage=${post.isImage}
+            data-likes='${post.likes}' data-profilePic='${post.profile_pic}' data-caption='${post.caption}' data-mediaId='${post.id}'><i class="uil-heart"></i> ${post.likes} </a>
         </div>
     </div>`
     });
@@ -599,10 +624,14 @@ async function followFunction(data) {
     if (result == 'follow') {
         console.log(result)
         data.innerHTML = 'Following'
+        document.getElementById('ProfileFollowers').innerHTML = parseInt(document.getElementById('ProfileFollowers').innerHTML) + 1;
+        document.getElementById('following').innerHTML = parseInt(document.getElementById('following').innerHTML) + 1;
     }
     else {
         console.log(result)
         data.innerHTML = 'Follow'
+        document.getElementById('ProfileFollowers').innerHTML = parseInt(document.getElementById('ProfileFollowers').innerHTML) - 1;
+        document.getElementById('following').innerHTML = parseInt(document.getElementById('following').innerHTML) - 1;
     }
 }
 
@@ -635,4 +664,21 @@ function onFileSelected(event) {
     };
 
     reader.readAsDataURL(selectedFile);
+}
+
+function getStoryModal(data) {
+    UIkit.modal(document.getElementById('story-modal')).show();
+    document.getElementById('profilePic').src = data.dataset.profilepic
+    document.getElementById('name').innerHTML = data.dataset.name
+    document.getElementById('modalCaption').innerHTML = data.dataset.caption
+    isImage = data.dataset.isimage
+    if (isImage == "true") {
+        nodeImage = '<img src="' + data.dataset.postlink + '" alt="" class="inset-0 h-full w-full object-cover" style="width: 660px;">'
+        document.getElementById('postlink').innerHTML = nodeImage;
+    }
+    else {
+        nodeVideo = '<video id="postVideo" src="' + data.dataset.postlink + '" class="inset-0 h-full w-full object-cover" controls  style="width: 660px; max-height: 880px;"></video>'
+        document.getElementById('postlink').innerHTML = nodeVideo;
+        setInterval(function () { document.getElementById('postVideo').style.inlineSize = 'auto' }, 5000);
+    }
 }
