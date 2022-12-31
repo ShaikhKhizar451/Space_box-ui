@@ -172,6 +172,7 @@ async function getAccountInfo() {
 
     document.getElementById('about').value = result[0].bio
     document.getElementById('location').value = result[0].location
+    $('#location').trigger('change');
     document.getElementById('dob').value = result[0].dob
     document.getElementById('gender').value = result[0].gender
     document.getElementById('first_name').value = result[1]
