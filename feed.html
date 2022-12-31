@@ -430,7 +430,7 @@
         data.append('likes', 0);
         data.append('created_on', new Date().toLocaleDateString([], { hour: '2-digit', minute: "2-digit", hour12: false }));
         data.append('file', input.files[0]);
-        let response = await fetch('https://space-box.onrender.com/create_post', {
+        let response = await fetch('https://spacebox-production.up.railway.app/create_post', {
             headers: myHeaders,
             method: 'post',
             body: data,

@@ -187,7 +187,7 @@
             showloader();
             locationLoad();
             $("#location").select2();
-            let currentUserResponse = await fetch('https://space-box.onrender.com/getCurrentUser', {
+            let currentUserResponse = await fetch('https://spacebox-production.up.railway.app/getCurrentUser', {
                 headers: myHeaders,
                 method: 'Get',
             });
@@ -203,7 +203,7 @@
             validate();
             e.preventDefault();
             showloader();
-            let response = await fetch('https://space-box.onrender.com/create_profile', {
+            let response = await fetch('https://spacebox-production.up.railway.app/create_profile', {
                 headers: myHeaders,
                 method: 'Post',
                 body: new FormData(createProfile),
