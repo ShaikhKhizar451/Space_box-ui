@@ -459,11 +459,11 @@
 
     async function loadPost(nextLink) {
         showloader();
-        var searchPage = new URL('https://spacebox-production.up.railway.app/' + nextLink)
+        var searchPage = new URL('https://spacebox-production.up.railway.app' + nextLink)
         if (searchPage.searchParams.get('page_start') != '1') {
             document.getElementById('toggle').remove();
         }
-        let response = await fetch('https://spacebox-production.up.railway.app/' + nextLink, {
+        let response = await fetch('https://spacebox-production.up.railway.app' + nextLink, {
             headers: myHeaders,
             method: 'Get'
         });
