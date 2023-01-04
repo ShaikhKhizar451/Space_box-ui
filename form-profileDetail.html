@@ -144,7 +144,6 @@
     <script src="assets/js/uikit.js"></script>
     <script src="assets/js/simplebar.js"></script>
     <script src="assets/js/custom.js"></script>
-    <script src="assets/js/cropzee.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
 
@@ -156,19 +155,19 @@
     <script src="assets/js/common.js"></script>
 
     <script>
+        // disbale back button in browser
         $(document).ready(function () {
-            $("#cropzee-input").cropzee({ startSize: [85, 85, '%'], });
             history.pushState(null, document.title, location.href);
             window.addEventListener('popstate', function (event) {
                 history.pushState(null, document.title, location.href);
             });
         });
+        // get file name which is uploaded
         $('#about').emojioneArea({
             pickerPosition: 'bottom'
         });
 
-        $('.hover-to-get-info')
-
+        // validating the form which should not be empty
         function validate() {
             var bio = document.getElementById('about').value;
             var location = document.getElementById('location').value;
@@ -181,6 +180,7 @@
     </script>
 
     <script>
+        // default function to executing onload of page
         document.getElementsByTagName('body')[0].onload = async (e) => {
             e.preventDefault();
             verify();
@@ -198,7 +198,7 @@
             document.getElementById('email').value = result.email;
         }
 
-
+        // on button click creating the profile for current user 
         submitProfile.onclick = async (e) => {
             validate();
             e.preventDefault();

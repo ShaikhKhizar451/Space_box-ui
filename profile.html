@@ -483,25 +483,30 @@
     <script src="assets/js/common.js"></script>
 
     <script>
+        // default function to executing onload of page
         async function onloadFunction() {
             verify();
             await getDefaultValues();
             getProfileInfo();
         }
+
+        // change of modal input text for comment part
         function hideCommentPart() {
             document.getElementById('commentSection').remove()
-            // <textarea  id="caption" name="caption" id="" cols="30" rows="10" placeholder="Add your New Caption.." class="bg-transparent max-h-8 shadow-none"></textarea>
             $(document.getElementById('textareaCaption')).removeClass('rounded-full').addClass('rounded-half')
         }
 
+        // opening the emoji panel downwords
         $('#uploadCaption').emojioneArea({
             pickerPosition: 'bottom'
         });
 
+        // get file name which is uploaded
         $("input[type=file]").on('change', function () {
             $('#afteruploadtext')[0].innerHTML = 'You have Uploaded ' + this.files[0].name;
         });
 
+        // on form submit creating post
         formElem.onsubmit = async (e) => {
             e.preventDefault();
             showloader();
@@ -528,6 +533,7 @@
             hideloader();
         }
 
+        // updating the post caption using api
         async function UpdatePostCaption() {
             showloader();
             var caption = document.getElementById('UpdatedCaption').value;
@@ -541,6 +547,8 @@
             alert(result);
             window.location.reload();
         }
+
+        // deleting the selected post in modal
         async function deletePost(data) {
             var id = data.dataset.mediaid;
             if (confirm('Are you sure you want to delete your post...?') == true) {
@@ -560,6 +568,8 @@
                 window.location.reload();
             }
         }
+
+        // get modal detail for post inside the profile page
         function getStoryModalForProfile(data) {
             UIkit.modal(document.getElementById('story-modal')).show();
             document.getElementById('profilePic').src = data.dataset.profilepic

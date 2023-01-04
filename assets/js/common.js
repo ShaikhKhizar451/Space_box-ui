@@ -1,6 +1,8 @@
+// Appending Token to header for API call
 let myHeaders = new Headers();
 myHeaders.append("Authorization", sessionStorage.getItem("token"));
 
+// Adding common Loader to all pages
 var wrapper = document.getElementById('wrapper');
 var loader = document.createElement('div');
 loader.className = 'uk-icon uk-spinner';
@@ -8,22 +10,28 @@ loader.id = 'loader';
 loader.setAttribute('uk-spinner', 'ratio: 3');
 wrapper.prepend(loader);
 
+// function to show loader
 function showloader() {
     document.getElementById('loader').style.display = 'block';
 }
+// function to hide loader
 function hideloader() {
     document.getElementById('loader').style.display = 'none';
 }
 
+// initalizing global variable to use current user id
 var user_id = '';
 
 
+// verifying user is authenticated
 function verify() {
     var token = sessionStorage.getItem("token");
     if (token === null) {
         window.location.replace("./index.html");
     }
 }
+
+// function to logout which clears the token from session
 function logout() {
     var x;
     a = confirm("You are about to Logout!")
@@ -33,6 +41,7 @@ function logout() {
     }
 }
 
+// function to get detail of current user as well as user with id  
 async function getProfileInfo() {
     showloader();
     var url = new URL(window.location.href);
@@ -162,6 +171,7 @@ async function getProfileInfo() {
 
 }
 
+// function to get current profile details
 async function getAccountInfo() {
     showloader();
     let response = await fetch('https://spacebox-production.up.railway.app/getCurrentProfile', {
@@ -186,7 +196,7 @@ async function getAccountInfo() {
     hideloader();
 }
 
-
+// common function for all pages where user detail like name profile picture and other gets populated
 async function getDefaultValues() {
     showloader();
     let response = await fetch('https://spacebox-production.up.railway.app/getCurrentProfile', {
@@ -212,6 +222,7 @@ async function getDefaultValues() {
 }
 
 
+// function use to show post at feeds page
 async function showPost(result, page_start) {
     showloader();
     if (page_start == 1) {
@@ -516,6 +527,7 @@ async function showPost(result, page_start) {
     }
 }
 
+// function to like the posts
 async function likethisPost(data) {
     id = data.id;
     let response = await fetch('https://spacebox-production.up.railway.app/likePost/' + id, {
@@ -535,17 +547,8 @@ async function likethisPost(data) {
     }
 }
 
-async function follow(data) {
-    if (data.innerHTML == 'Following') {
-        if (confirm('Are you sure you want to unfollow the user...?') == true) {
-            followFunction(data);
-        }
-    }
-    else {
-        followFunction(data);
-    }
 
-}
+// function to get suggested users
 async function getSuggestionUser() {
     let response = await fetch('https://spacebox-production.up.railway.app/suggestionUser', {
         headers: myHeaders,
@@ -586,6 +589,8 @@ async function getSuggestionUser() {
     }
 }
 
+
+// function to get the latest post
 function latestPost(data) {
     post = data.slice(0, 4)
     let latestPost = document.querySelector('#latestPost');
@@ -615,6 +620,19 @@ function latestPost(data) {
     latestPost.innerHTML = s;
 }
 
+
+// function to follow the users
+function follow(data) {
+    if (data.innerHTML == 'Following') {
+        if (confirm('Are you sure you want to unfollow the user...?') == true) {
+            followFunction(data);
+        }
+    }
+    else {
+        followFunction(data);
+    }
+
+}
 async function followFunction(data) {
     id = data.id;
     let response = await fetch('https://spacebox-production.up.railway.app/follow/' + id, {
@@ -636,7 +654,7 @@ async function followFunction(data) {
     }
 }
 
-
+// validating the files which is uploaded should be Image or video not others
 function fileValidationForPost() {
     var fileInput =
         document.getElementById('postImg');
@@ -653,6 +671,7 @@ function fileValidationForPost() {
     }
 }
 
+// posting image in image tag once file is selected
 function onFileSelected(event) {
     var selectedFile = event.target.files[0];
     var reader = new FileReader();
@@ -667,6 +686,7 @@ function onFileSelected(event) {
     reader.readAsDataURL(selectedFile);
 }
 
+// function to show the modal with appropriate data
 function getStoryModal(data) {
     UIkit.modal(document.getElementById('story-modal')).show();
     document.getElementById('profilePic').src = data.dataset.profilepic
@@ -684,6 +704,7 @@ function getStoryModal(data) {
     }
 }
 
+// function to load cities of india
 function locationLoad() {
     (async () => {
         const where = encodeURIComponent(JSON.stringify({

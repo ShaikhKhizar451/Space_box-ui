@@ -355,6 +355,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     
     <script>
+        // default function to executing onload of page
         document.getElementsByTagName('body')[0].onload = async (e) => {
             e.preventDefault();
             verify();
@@ -364,7 +365,7 @@
             $("#location").select2();
         }
 
-
+        //  updating the profile details including the profile picture
         frmUpdateProfile.onsubmit = async (e) => {
             e.preventDefault();
             showloader();
@@ -378,11 +379,9 @@
                 'location': document.getElementById('location').value,
                 'file': document.getElementById('profileImgtag').value, 
             };
-            // myHeaders.append('Content-Type', 'application/json')
             let response = await fetch('https://spacebox-production.up.railway.app/updateProfile/' + id + '/' + media_id, {
                 headers: myHeaders,
                 method: 'Put',
-                // body: JSON.stringify(data),
                 body: new FormData(frmUpdateProfile),
             });
             let result = await response.json();

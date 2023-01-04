@@ -103,6 +103,7 @@
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/common.js"></script>
     <script>
+        // clearing the current session, authenticating the user and creating new token for the user 
         sessionStorage.clear();
         loginForm.onsubmit = async (e) => {
             e.preventDefault();

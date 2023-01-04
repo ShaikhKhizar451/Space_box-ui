@@ -211,7 +211,7 @@
                             <div
                                 class="bg-gray-50 dark:bg-gray-800 border-b border-gray-100 flex items-baseline justify-between py-4 px-6 dark:border-gray-800">
                                 <h2 class="font-semibold text-lg">Who to follow</h2>
-                                <a href="#"> Refresh</a>
+                                <a onclick="getSuggestionUser()"> Refresh</a>
                             </div>
 
                             <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 dark:divide-gray-800 dark:text-gray-100"
@@ -411,16 +411,19 @@
     <script src="assets/js/common.js"></script>
 </body>
 <script>
+    // disbale back button in browser
     $(document).ready(function () {
         history.pushState(null, document.title, location.href);
         window.addEventListener('popstate', function (event) {
             history.pushState(null, document.title, location.href);
         });
     });
+    // get file name which is uploaded
     $("input[type=file]").on('change', function () {
         $('#afteruploadtext')[0].innerHTML = 'You have Uploaded ' + this.files[0].name;
     });
 
+    // on form submit creating post
     formElem.onsubmit = async (e) => {
         e.preventDefault();
         showloader();
@@ -446,10 +449,12 @@
         }
         hideloader();
     }
+    // opening the emoji panel downwords
     $('#caption').emojioneArea({
         pickerPosition: 'bottom'
     });
 
+    // default function to executing onload of page
     async function defaultFunction() {
         verify();
         await getDefaultValues();
@@ -457,6 +462,7 @@
         getSuggestionUser();
     }
 
+    // function for load more button which loads more post once click
     async function loadPost(nextLink) {
         showloader();
         var searchPage = new URL('https://spacebox-production.up.railway.app' + nextLink)
