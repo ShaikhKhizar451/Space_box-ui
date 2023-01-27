@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="assets/css/uikit.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/tailwind.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -40,7 +40,7 @@
 
                 <div class="flex items-center lg:justify-between justify-around">
 
-                    <a href="trending.html">
+                    <a href="#">
                         <img src="assets/images/logo.png" alt="" class="w-32">
                     </a>
 
@@ -192,6 +192,10 @@
                 method: 'Get',
             });
             let result = await currentUserResponse.json();
+            if (result['detail'] == 'Could not validate credentials') {
+                alert('Your Session is Expired... Please re-login...')
+                window.location = "index.html"
+            }
             hideloader();
             document.getElementById('first_name').value = result.first_name;
             document.getElementById('last_name').value = result.last_name;
@@ -209,6 +213,10 @@
                 body: new FormData(createProfile),
             });
             let result = await response.json();
+            if (result['detail'] == 'Could not validate credentials') {
+                alert('Your Session is Expired... Please re-login...')
+                window.location = "index.html"
+            }
             hideloader();
             alert("Profile Created Successfully");
             window.location.href = "feed.html"

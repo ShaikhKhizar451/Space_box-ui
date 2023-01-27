@@ -53,6 +53,11 @@ async function getProfileInfo() {
         });
         let result = await response.json();
 
+        if (result['detail'] == 'Could not validate credentials') {
+            alert('Your Session is Expired... Please re-login...')
+            window.location = "index.html"
+        }
+
         document.getElementById('ProfilefullNameTag').innerHTML = result.first_name + ' ' + result.last_name;
         document.getElementById('ProfileBio').innerHTML = document.getElementById('bio').innerHTML;
         document.getElementById('ProfilePost').innerHTML = parseInt(document.getElementById('noOfPost').innerHTML);
@@ -91,8 +96,6 @@ async function getProfileInfo() {
                     data-name='${post.first_name} ${post.last_name}' data-postLink='${post.web_url}' data-isImage=${post.isImage}
                     data-likes='${post.likes}' data-profilePic='${post.profile_pic}' data-caption='${post.caption}' data-mediaId='${post.id}'> <ion-icon name="heart"
                             class="mr-1"></ion-icon>${post.likes}</a>
-                    <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon
-                            name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
                     </div>
         
                     </div>
@@ -109,7 +112,10 @@ async function getProfileInfo() {
             method: 'Get'
         });
         let result = await response.json();
-
+        if (result['detail'] == 'Could not validate credentials') {
+            alert('Your Session is Expired... Please re-login...')
+            window.location = "index.html"
+        }
         document.getElementById('userPicture').src = result.profile_pic;
         document.getElementById('ProfilefullNameTag').innerHTML = result.first_name + ' ' + result.last_name;
         document.getElementById('ProfileBio').innerHTML = result.bio;
@@ -155,8 +161,6 @@ async function getProfileInfo() {
                             data-name='${post.first_name} ${post.last_name}' data-postLink='${post.web_url}' data-isImage=${post.isImage}
                             data-likes='${post.likes}' data-profilePic='${post.profile_pic}' data-caption='${post.caption}' data-mediaId='${post.id}'> <ion-icon name="heart"
                                     class="mr-1"></ion-icon>${post.likes}</a>
-                            <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon
-                                    name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
                             </div>
 
                             </div>
@@ -179,7 +183,10 @@ async function getAccountInfo() {
         method: 'Get'
     });
     let result = await response.json();
-
+    if (result['detail'] == 'Could not validate credentials') {
+        alert('Your Session is Expired... Please re-login...')
+        window.location = "index.html"
+    }
     document.getElementById('about').value = result[0].bio
     document.getElementById('location').value = result[0].location
     $('#location').trigger('change');
@@ -204,6 +211,10 @@ async function getDefaultValues() {
         method: 'Get'
     });
     let result = await response.json();
+    if (result['detail'] == 'Could not validate credentials') {
+        alert('Your Session is Expired... Please re-login...')
+        window.location = "index.html"
+    }
     if (result.detail == 'Profile not found') {
         alert("Please create Profile First!!!");
         window.location.href = 'form-profileDetail.html'
@@ -292,62 +303,7 @@ async function showPost(result, page_start) {
                     </div>
                     <div>${post.likes} Like</div>
                 </div>
-                <a href="" class="flex items-center space-x-2 flex-1 justify-end" uk-toggle="target: #viewAllCommentsOf${i}">
-                    <div class="p-2 rounded-full text-black">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                            fill="currentColor" width="22" height="22" class="dark:text-gray-100">
-                            <path fill-rule="evenodd"
-                                d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div> Comment</div>
-                </a>
             </div>
-        </div>
-        <div class="py-3 px-4 space-y-3" id="viewAllCommentsOf${i}" aria-hidden="true" hidden>
-            <div class="border-t pt-4 space-y-4 dark:border-gray-600">
-                <div class="flex">
-                    <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                        <img src="assets/images/avatars/avatar-1.jpg" alt=""
-                            class="absolute h-full rounded-full w-full">
-                    </div>
-                    <div
-                        class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20  dark:bg-gray-800 dark:text-gray-100">
-                        <p class="leading-6">In ut odio libero vulputate <urna class="i uil-heart">
-                            </urna> <i class="uil-grin-tongue-wink"> </i> </p>
-                        <div
-                            class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex">
-                    <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                        <img src="assets/images/avatars/avatar-1.jpg" alt=""
-                            class="absolute h-full rounded-full w-full">
-                    </div>
-                    <div
-                        class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20  dark:bg-gray-800 dark:text-gray-100">
-                        <p class="leading-6">Nam liber tempor cum soluta nobis eleifend option <i
-                                class="uil-grin-tongue-wink-alt"></i>
-                        </p>
-                        <div
-                            class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-gray-100 bg-gray-100 rounded-full rounded-md relative dark:bg-gray-800">
-                <input type="text" placeholder="Add your Comment.."
-                    class="bg-transparent max-h-10 shadow-none">
-                <div
-                    class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">
-                    <a href="#"> <i class="uil-image"></i></a>
-                    <a href="#"> <i class="uil-video"></i></a>
-                </div>
-            </div>
-
         </div>
 
     </div>
@@ -442,64 +398,8 @@ async function showPost(result, page_start) {
                     </div>
                     <div>${post.likes} Like</div>
                 </div>
-                <a href="" class="flex items-center space-x-2 flex-1 justify-end" uk-toggle="target: #viewAllCommentsOf${i}">
-                    <div class="p-2 rounded-full text-black">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                            fill="currentColor" width="22" height="22" class="dark:text-gray-100">
-                            <path fill-rule="evenodd"
-                                d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div> Comment</div>
-                </a>
             </div>
         </div>
-        <div class="py-3 px-4 space-y-3" id="viewAllCommentsOf${i}" aria-hidden="true" hidden>
-            <div class="border-t pt-4 space-y-4 dark:border-gray-600">
-                <div class="flex">
-                    <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                        <img src="assets/images/avatars/avatar-1.jpg" alt=""
-                            class="absolute h-full rounded-full w-full">
-                    </div>
-                    <div
-                        class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20  dark:bg-gray-800 dark:text-gray-100">
-                        <p class="leading-6">In ut odio libero vulputate <urna class="i uil-heart">
-                            </urna> <i class="uil-grin-tongue-wink"> </i> </p>
-                        <div
-                            class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex">
-                    <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                        <img src="assets/images/avatars/avatar-1.jpg" alt=""
-                            class="absolute h-full rounded-full w-full">
-                    </div>
-                    <div
-                        class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20  dark:bg-gray-800 dark:text-gray-100">
-                        <p class="leading-6">Nam liber tempor cum soluta nobis eleifend option <i
-                                class="uil-grin-tongue-wink-alt"></i>
-                        </p>
-                        <div
-                            class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-gray-100 bg-gray-100 rounded-full rounded-md relative dark:bg-gray-800">
-                <input type="text" placeholder="Add your Comment.."
-                    class="bg-transparent max-h-10 shadow-none">
-                <div
-                    class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">
-                    <a href="#"> <i class="uil-image"></i></a>
-                    <a href="#"> <i class="uil-video"></i></a>
-                </div>
-            </div>
-
-        </div>
-
     </div>
     ${(() => {
                     if (i == 3) {
@@ -535,6 +435,10 @@ async function likethisPost(data) {
         method: 'Put'
     });
     let result = await response.json();
+    if (result['detail'] == 'Could not validate credentials') {
+        alert('Your Session is Expired... Please re-login...')
+        window.location = "index.html"
+    }
     if (result == 'liked') {
         data.children[0].className = 'p-2 rounded-full text-black'
         like = parseInt(data.children[1].innerHTML.split(' ')[0]) + 1
@@ -555,6 +459,10 @@ async function getSuggestionUser() {
         method: 'Get'
     });
     let result = await response.json();
+    if (result['detail'] == 'Could not validate credentials') {
+        alert('Your Session is Expired... Please re-login...')
+        window.location = "index.html"
+    }
     let suggestion_box = document.querySelector('#suggestion_box');
     if (result.length == 0) {
         suggestion_box.innerHTML = `<div class="flex items-center justify-between py-3">
@@ -640,6 +548,10 @@ async function followFunction(data) {
         method: 'Put'
     });
     let result = await response.json();
+    if (result['detail'] == 'Could not validate credentials') {
+        alert('Your Session is Expired... Please re-login...')
+        window.location = "index.html"
+    }
     if (result == 'follow') {
         console.log(result)
         data.innerHTML = 'Following'

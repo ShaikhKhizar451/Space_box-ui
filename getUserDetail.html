@@ -34,6 +34,42 @@
                 max-width: 860px;
             }
         }
+        .popup{
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            transform: translateX(-50%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .popup.active{
+            animation: popup 1s ease-in-out forwards;
+        }
+        @keyframes popup{
+            0%{
+                opacity: 0;
+                pointer-events: auto;
+                transform: translate(-50%, -20px);
+            }
+            40%{
+                opacity: 1;
+                pointer-events: auto;
+                transform: translate(-50%, 0px);
+            }
+            80%{
+                opacity: 1;
+                pointer-events: auto;
+                transform: translate(-50%, 0px);
+            }
+            100%{
+                opacity: 0;
+                pointer-events: auto;
+                transform: translate(-50%, -20px);
+            }
+        }
     </style>
 
 
@@ -154,17 +190,6 @@
                             <i class="uil-bars"></i>
                         </div>
 
-                        <div class="header_search">
-                            <input type="text" placeholder="Search..">
-                            <div class="icon-search">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </div>
-                        </div>
-
                     </div>
                     <div class="right-side lg:pr-4">
                         <!-- profile -->
@@ -216,10 +241,13 @@
 
                                     <ul class="space-y-1">
                                         <li>
-                                            <a href="#"
+                                            <a href="#" onclick="copy()"
                                                 class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-700">
                                                 <i class="uil-share-alt mr-2"></i> Share This Profile
                                             </a>
+                                            <div class="popup">
+                                                <h4>Copied 📄</h4>
+                                            </div>
                                         </li>
                                     </ul>
 
@@ -295,50 +323,12 @@
                 </div>
                 <p id="modalCaption"> </p>
                 <div class="story-content p-4" data-simplebar id="commentSection">
-
-
-
-                    <div class="py-4 ">
-                        <hr class="-mx-4 my-3">
-                        <div class="flex items-center space-x-3">
-                            <div class="flex items-center">
-                                <img src="assets/images/avatars/avatar-1.jpg" alt=""
-                                    class="w-6 h-6 rounded-full border-2 border-white">
-                                <img src="assets/images/avatars/avatar-4.jpg" alt=""
-                                    class="w-6 h-6 rounded-full border-2 border-white -ml-2">
-                                <img src="assets/images/avatars/avatar-2.jpg" alt=""
-                                    class="w-6 h-6 rounded-full border-2 border-white -ml-2">
-                            </div>
-                            <div>
-                                Liked <strong> Johnson</strong> and <strong> 209 Others </strong>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="-mt-1 space-y-1">
-                        <div class="flex flex-1 items-center space-x-2">
-                            <img src="assets/images/avatars/avatar-2.jpg" class="rounded-full w-8 h-8">
-                            <div class="flex-1 p-2">
-                                consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                            </div>
-                        </div>
-
-                        <div class="flex flex-1 items-center space-x-2">
-                            <img src="assets/images/avatars/avatar-4.jpg" class="rounded-full w-8 h-8">
-                            <div class="flex-1 p-2">
-                                consectetuer adipiscing elit
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="p-3 border-t dark:border-gray-600">
                     <div class="bg-gray-200 dark:bg-gray-700 rounded-full rounded-md relative" id="textareaCaption">
-                        <input id="UpdatedCaption" type="text" placeholder="Add your Comment.."
-                            class="bg-transparent max-h-8 shadow-none">
+
                         <div class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">
-                            <a onclick="UpdatePostCaption(this)" id="btnSubmitCaption" data-mediaId=""> <i
-                                    class="uil-message"></i></a>
+                            <a onclick="UpdatePostCaption(this)" id="btnSubmitCaption" data-mediaId=""></a>
                         </div>
                     </div>
                 </div>
@@ -404,6 +394,16 @@
             verify();
             await getDefaultValues();
             getProfileInfo();
+        }
+        function copy() {
+            $('.popup')[0].className='popup active'
+            var Url = window.location.href;
+            navigator.clipboard.writeText(Url);
+            document.execCommand("copy");
+            setTimeout(popout, 1500);
+        }
+        function popout(){
+            $('.popup')[0].className='popup'
         }
     </script>
 

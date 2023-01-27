@@ -113,7 +113,8 @@
                     </li>
                     <li class="uk-hidden@s">
                         <a href="#post-modal" uk-toggle>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon s-ion-icon" viewBox="0 0 512 512" style="fill: #be185d;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon s-ion-icon" viewBox="0 0 512 512"
+                                style="fill: #be185d;">
                                 <title>Add Circle</title>
                                 <path
                                     d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm80 224h-64v64a16 16 0 01-32 0v-64h-64a16 16 0 010-32h64v-64a16 16 0 0132 0v64h64a16 16 0 010 32z">
@@ -153,17 +154,6 @@
 
                         <div class="triger" uk-toggle="target: #wrapper ; cls: sidebar-active">
                             <i class="uil-bars"></i>
-                        </div>
-
-                        <div class="header_search">
-                            <input type="text" placeholder="Search..">
-                            <div class="icon-search">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </div>
                         </div>
 
                     </div>
@@ -211,7 +201,7 @@
                             <div
                                 class="bg-gray-50 dark:bg-gray-800 border-b border-gray-100 flex items-baseline justify-between py-4 px-6 dark:border-gray-800">
                                 <h2 class="font-semibold text-lg">Who to follow</h2>
-                                <a onclick="getSuggestionUser()"> Refresh</a>
+                                <a onclick="getSuggestionUser()" style="cursor: pointer;"> Refresh</a>
                             </div>
 
                             <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 dark:divide-gray-800 dark:text-gray-100"
@@ -265,40 +255,10 @@
                         <span class="block text-lg font-semibold" id="name"> </span>
                     </div>
                 </div>
-                <p id="modalCaption"> </p>
-                <div class="story-content p-4" data-simplebar>
-                    <div class="py-4 ">
-                        <hr class="-mx-4 my-3">
-                        <div class="flex items-center space-x-3">
-                            <div class="flex items-center">
-                                <img src="assets/images/avatars/avatar-1.jpg" alt=""
-                                    class="w-6 h-6 rounded-full border-2 border-white">
-                                <img src="assets/images/avatars/avatar-4.jpg" alt=""
-                                    class="w-6 h-6 rounded-full border-2 border-white -ml-2">
-                                <img src="assets/images/avatars/avatar-2.jpg" alt=""
-                                    class="w-6 h-6 rounded-full border-2 border-white -ml-2">
-                            </div>
-                            <div>
-                                Liked <strong> Johnson</strong> and <strong> 209 Others </strong>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="-mt-1 space-y-1">
-                        <div class="flex flex-1 items-center space-x-2">
-                            <img src="assets/images/avatars/avatar-2.jpg" class="rounded-full w-8 h-8">
-                            <div class="flex-1 p-2">
-                                consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                            </div>
-                        </div>
-
-                        <div class="flex flex-1 items-center space-x-2">
-                            <img src="assets/images/avatars/avatar-4.jpg" class="rounded-full w-8 h-8">
-                            <div class="flex-1 p-2">
-                                consectetuer adipiscing elit
-                            </div>
-                        </div>
-                    </div>
+                <div style="padding: 5%; display: flex;">
+                    <label style="color: darkslategray;">Caption: </label>
+                    <p>&nbsp;</p>
+                    <label id="modalCaption" style="color: darkgray;"></label>
                 </div>
             </div>
         </div>
@@ -440,6 +400,10 @@
         });
 
         let result = await response.json();
+        if (result['detail'] == 'Could not validate credentials') {
+            alert('Your Session is Expired... Please re-login...')
+            window.location = "index.html"
+        }
         if (result == "Post Created Successfully") {
             alert("Post Created Successfully")
             window.location.reload();
@@ -474,6 +438,10 @@
             method: 'Get'
         });
         let result = await response.json();
+        if (result['detail'] == 'Could not validate credentials') {
+            alert('Your Session is Expired... Please re-login...')
+            window.location = "index.html"
+        }
         hideloader();
         console.log(result);
         showPost(result, new URL(response.url).searchParams.get('page_start'));

@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="assets/css/uikit.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/tailwind.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
     <style>
         .pb-7 {
@@ -171,7 +171,6 @@
                 <ul uk-tab class="mt-5 -mr-3 flex-nowrap lg:overflow-hidden overflow-x-scroll uk-tab"
                     data-uk-tab="{connect:'#my-id3'}">
                     <li class="uk-active"><a href="#profile">Profile</a></li>
-                    <li><a href="#SocialLinks">Social links</a></li>
                 </ul>
 
                 <ul id="my-id3" class="uk-switcher uk-margin">
@@ -186,14 +185,15 @@
                                 <form action="" method="post" id="frmUpdateProfile" data-id="">
                                     <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
                                         <div class="col-span-2" style="display: flex;">
-                                            <label for="" style="margin: auto; margin-left:0; margin-right: 2rem">Update Profile Picture</label>
+                                            <label for="" style="margin: auto; margin-left:0; margin-right: 2rem">Update
+                                                Profile Picture</label>
                                             <center>
                                                 <div uk-form-custom
                                                     class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transition m-0.5 mr-2  w-32 h-32  relative overflow-hidden uk-transition-toggle">
                                                     <input type="file" id="cropzee-input" accept=".png,.jpg"
                                                         onchange="onFileSelected(event)" required name="file">
-                                                    <img class="image-previewer bg-gray-200 border-4 border-white rounded-full w-full h-full profilePicture" data-imageId=""
-                                                        id="profileImgtag" onclick="getFile()"
+                                                    <img class="image-previewer bg-gray-200 border-4 border-white rounded-full w-full h-full profilePicture"
+                                                        data-imageId="" id="profileImgtag" onclick="getFile()"
                                                         data-cropzee="cropzee-input">
                                                     <div
                                                         class="absolute -bottom-3 custom-overly1 flex justify-center pt-4 pb-7 space-x-3 text-2xl text-white uk-transition-slide-bottom-medium w-full">
@@ -217,17 +217,18 @@
                                         </div>
                                         <div class="col-span-2">
                                             <label for=""> Email</label>
-                                            <input id="email" disabled type="text"
-                                                placeholder="Your name.." class="shadow-none bg-gray-100">
+                                            <input id="email" disabled type="text" placeholder="Your name.."
+                                                class="shadow-none bg-gray-100">
                                         </div>
                                         <div class="col-span-2">
                                             <label for="about">About me</label>
-                                            <textarea id="about" name="bio" rows="3"
-                                                class="shadow-none bg-gray-100" required></textarea>
+                                            <textarea id="about" name="bio" rows="3" class="shadow-none bg-gray-100"
+                                                required></textarea>
                                         </div>
                                         <div class="col-span-2">
                                             <label for=""> Location </label>
-                                            <select id="location" name="location" required class="shadow-none bg-gray-100">
+                                            <select id="location" name="location" required
+                                                class="shadow-none bg-gray-100">
                                                 <option value="" disabled>None</option>
                                             </select>
                                         </div>
@@ -260,37 +261,6 @@
 
                         </div>
 
-                    </li>
-                    <li>
-                        <div class="grid lg:grid-cols-3 mt-12 gap-8" id="SocialLinks">
-                            <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
-                                <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
-                                    <div>
-                                        <h3 class="text-xl mb-2"> Facebook</h3>
-                                        <p>Link of facebook account</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
-                                <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
-                                    <div>
-                                        <h3 class="text-xl mb-2"> LinkedIn</h3>
-                                        <p>Link of LinkedIn account</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
-                                <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
-                                    <div>
-                                        <h3 class="text-xl mb-2"> YouTube</h3>
-                                        <p>Link of YouTube account</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                     </li>
                 </ul>
             </div>
@@ -353,7 +323,7 @@
     <script src="assets/js/common.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    
+
     <script>
         // default function to executing onload of page
         document.getElementsByTagName('body')[0].onload = async (e) => {
@@ -377,7 +347,7 @@
                 'bio': document.getElementById('about').value,
                 'gender': document.getElementById('gender').value,
                 'location': document.getElementById('location').value,
-                'file': document.getElementById('profileImgtag').value, 
+                'file': document.getElementById('profileImgtag').value,
             };
             let response = await fetch('https://spacebox-production.up.railway.app/updateProfile/' + id + '/' + media_id, {
                 headers: myHeaders,
@@ -385,6 +355,10 @@
                 body: new FormData(frmUpdateProfile),
             });
             let result = await response.json();
+            if (result['detail'] == 'Could not validate credentials') {
+                alert('Your Session is Expired... Please re-login...')
+                window.location = "index.html"
+            }
             hideloader();
             if (result == 'Updated Successfully') {
                 alert("Profile Updated Successfully");
