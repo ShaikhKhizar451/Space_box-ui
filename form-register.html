@@ -133,7 +133,7 @@
                     'email': document.getElementById('username').value,
                     'password': document.getElementById('password').value
                 };
-                let response = await fetch('https://spacebox-production.up.railway.app/create_user', {
+                let response = await fetch('https://space-box.onrender.com/create_user', {
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -147,7 +147,7 @@
                 // Get Token for new user
                 showloader();
                 sessionStorage.clear();
-                let loginResponse = await fetch('https://spacebox-production.up.railway.app/authentication', {
+                let loginResponse = await fetch('https://space-box.onrender.com/authentication', {
                     method: 'POST',
                     body: new FormData(createUserForm),
                 })

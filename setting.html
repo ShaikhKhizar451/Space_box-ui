@@ -349,7 +349,7 @@
                 'location': document.getElementById('location').value,
                 'file': document.getElementById('profileImgtag').value,
             };
-            let response = await fetch('https://spacebox-production.up.railway.app/updateProfile/' + id + '/' + media_id, {
+            let response = await fetch('https://space-box.onrender.com/updateProfile/' + id + '/' + media_id, {
                 headers: myHeaders,
                 method: 'Put',
                 body: new FormData(frmUpdateProfile),

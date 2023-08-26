@@ -47,7 +47,7 @@ async function getProfileInfo() {
     var url = new URL(window.location.href);
     var id = url.searchParams.get('id');
     if (id == null) {
-        let response = await fetch('https://spacebox-production.up.railway.app/getCurrentUser', {
+        let response = await fetch('https://space-box.onrender.com/getCurrentUser', {
             headers: myHeaders,
             method: 'Get'
         });
@@ -107,7 +107,7 @@ async function getProfileInfo() {
     }
     else {
         showloader();
-        let response = await fetch('https://spacebox-production.up.railway.app/getUserWithId/' + id, {
+        let response = await fetch('https://space-box.onrender.com/getUserWithId/' + id, {
             headers: myHeaders,
             method: 'Get'
         });
@@ -178,7 +178,7 @@ async function getProfileInfo() {
 // function to get current profile details
 async function getAccountInfo() {
     showloader();
-    let response = await fetch('https://spacebox-production.up.railway.app/getCurrentProfile', {
+    let response = await fetch('https://space-box.onrender.com/getCurrentProfile', {
         headers: myHeaders,
         method: 'Get'
     });
@@ -206,7 +206,7 @@ async function getAccountInfo() {
 // common function for all pages where user detail like name profile picture and other gets populated
 async function getDefaultValues() {
     showloader();
-    let response = await fetch('https://spacebox-production.up.railway.app/getCurrentProfile', {
+    let response = await fetch('https://space-box.onrender.com/getCurrentProfile', {
         headers: myHeaders,
         method: 'Get'
     });
@@ -430,7 +430,7 @@ async function showPost(result, page_start) {
 // function to like the posts
 async function likethisPost(data) {
     id = data.id;
-    let response = await fetch('https://spacebox-production.up.railway.app/likePost/' + id, {
+    let response = await fetch('https://space-box.onrender.com/likePost/' + id, {
         headers: myHeaders,
         method: 'Put'
     });
@@ -454,7 +454,7 @@ async function likethisPost(data) {
 
 // function to get suggested users
 async function getSuggestionUser() {
-    let response = await fetch('https://spacebox-production.up.railway.app/suggestionUser', {
+    let response = await fetch('https://space-box.onrender.com/suggestionUser', {
         headers: myHeaders,
         method: 'Get'
     });
@@ -543,7 +543,7 @@ function follow(data) {
 }
 async function followFunction(data) {
     id = data.id;
-    let response = await fetch('https://spacebox-production.up.railway.app/follow/' + id, {
+    let response = await fetch('https://space-box.onrender.com/follow/' + id, {
         headers: myHeaders,
         method: 'Put'
     });

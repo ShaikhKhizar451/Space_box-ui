@@ -476,7 +476,7 @@
             data.append('likes', 0);
             data.append('created_on', new Date().toLocaleDateString([], { hour: '2-digit', minute: "2-digit", hour12: false }));
             data.append('file', input.files[0]);
-            let response = await fetch('https://spacebox-production.up.railway.app/create_post', {
+            let response = await fetch('https://space-box.onrender.com/create_post', {
                 headers: myHeaders,
                 method: 'post',
                 body: data,
@@ -502,7 +502,7 @@
             showloader();
             var caption = document.getElementById('UpdatedCaption').value;
             var id = document.getElementById('btnSubmitCaption').dataset.mediaid;
-            let response = await fetch('https://spacebox-production.up.railway.app/update_caption/' + id + '/' + caption, {
+            let response = await fetch('https://space-box.onrender.com/update_caption/' + id + '/' + caption, {
                 headers: myHeaders,
                 method: 'Put'
             });
@@ -521,7 +521,7 @@
             var id = data.dataset.mediaid;
             if (confirm('Are you sure you want to delete your post...?') == true) {
                 showloader();
-                let response = await fetch('https://spacebox-production.up.railway.app/delete_post/' + id, {
+                let response = await fetch('https://space-box.onrender.com/delete_post/' + id, {
                     headers: myHeaders,
                     method: 'delete'
                 });
